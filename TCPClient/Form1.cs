@@ -28,14 +28,14 @@ namespace TCPClient
 
         }
 
-        private void btnSayHello_Click(object sender, EventArgs e)
+        private void btnSayHello_Click(object sender, EventArgs e) //När man klickar på knappen kopplas klienten till servern och "hello" skickas till inkorgen i servern.
         {
-            IPAddress adress = IPAddress.Parse(tbxIPAdress.Text);
-            client = new TcpClient();
+            IPAddress adress = IPAddress.Parse(tbxIPAdress.Text); //IP adressen som skrevs in i klienten lagras. 
+            client = new TcpClient(); //Ny klient skapas
             client.NoDelay = true;
-            client.Connect(adress, port);
+            client.Connect(adress, port); //Klienten kopplas till servern med rätt IP samt port. 
 
-            if (client.Connected)
+            if (client.Connected) //Om klienten kopplas så skickas meddelandet. 
             {
                 byte[] outData = Encoding.Unicode.GetBytes("Hello!");
                 client.GetStream().Write(outData, 0, outData.Length);
